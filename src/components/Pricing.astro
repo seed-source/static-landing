@@ -1,0 +1,188 @@
+---
+// Pricing Component - Seed & Source Tiers
+// Aligned with BUSINESS_PLAN.md pricing strategy
+// 3-tier model: Open Source, Pro, Enterprise
+
+interface PricingTier {
+  name: string;
+  price: string;
+  period?: string;
+  target: string;
+  description: string;
+  includes: string[];
+  features: string[];
+  cta: {
+    text: string;
+    url: string;
+    variant: 'primary' | 'outline';
+  };
+  badge?: string;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  tiers?: PricingTier[];
+}
+
+const {
+  title = "Flexible Pricing for Every Stage",
+  subtitle = "Choose the plan that fits your team's needs",
+  tiers = [
+    {
+      name: "Open Source",
+      price: "Free",
+      target: "Lead Generation",
+      description: "Perfect for exploring the templates or individual developers",
+      includes: ["rails-api template"],
+      features: [
+        "1 starter template",
+        "Community support",
+        "Full source code access",
+        "Local development setup"
+      ],
+      cta: {
+        text: "Start Now",
+        url: "/docs",
+        variant: 'outline'
+      }
+    },
+    {
+      name: "Pro",
+      price: "$399",
+      period: "one-time or annual",
+      target: "Senior Developers & Early Startups",
+      description: "Everything you need to launch a production app",
+      includes: ["rails-ui-kit", "python-saas", "react-client"],
+      features: [
+        "3 premium templates",
+        "1 year of priority support",
+        "Private Slack channel",
+        "Setup assistance",
+        "All future template updates"
+      ],
+      cta: {
+        text: "Get Pro",
+        url: "/signup",
+        variant: 'primary'
+      },
+      badge: "Most Popular"
+    },
+    {
+      name: "Enterprise",
+      price: "$999+",
+      target: "Agencies & Series A+ Teams",
+      description: "Full suite with infrastructure and data tools",
+      includes: ["Full Suite", "terraform-infra", "data-pipeline", "Commercial license"],
+      features: [
+        "All templates + infrastructure",
+        "2 years of priority support",
+        "Custom modules available",
+        "Dedicated onboarding",
+        "Team seat licenses",
+        "dbt data pipeline included"
+      ],
+      cta: {
+        text: "Contact Sales",
+        url: "/contact",
+        variant: 'outline'
+      }
+    }
+  ]
+} = Astro.props;
+---
+
+<section id="pricing" class="py-20 sm:py-32 bg-gradient-to-b from-white to-gray-50">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center mb-16">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        {title}
+      </h2>
+      <p class="mt-6 text-lg leading-8 text-gray-600">
+        {subtitle}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-6">
+      {tiers.map((tier) => (
+        <div
+          class={`relative flex flex-col rounded-2xl transition-all duration-300 ${
+            tier.badge
+              ? "border-2 border-emerald-500 shadow-xl hover:shadow-2xl ring-1 ring-emerald-500/20 md:scale-105"
+              : "border border-gray-200 shadow-md hover:shadow-lg hover:border-emerald-300"
+          } bg-white overflow-hidden`}
+        >
+          {/* Badge */}
+          {tier.badge && (
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
+              <span class="inline-flex items-center rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-1 text-sm font-semibold text-white shadow-lg">
+                {tier.badge}
+              </span>
+            </div>
+          )}
+
+          <div class="p-8">
+            {/* Header */}
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900">{tier.name}</h3>
+              <p class="mt-2 text-sm text-gray-600">{tier.target}</p>
+              <p class="mt-1 text-sm text-gray-500">{tier.description}</p>
+            </div>
+
+            {/* Price */}
+            <div class="mt-6 flex items-baseline gap-1">
+              <span class="text-5xl font-bold text-gray-900">{tier.price}</span>
+              {tier.period && (
+                <span class="text-base text-gray-600">({tier.period})</span>
+              )}
+            </div>
+
+            {/* What's Included */}
+            <div class="mt-6">
+              <p class="text-sm font-semibold text-gray-900">Includes:</p>
+              <ul class="mt-2 space-y-1">
+                {tier.includes.map((item) => (
+                  <li class="text-sm text-gray-700 flex items-center">
+                    <span class="mr-2 text-emerald-600">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Features */}
+            <ul class="mt-6 space-y-3 flex-1">
+              {tier.features.map((feature) => (
+                <li class="flex items-start gap-3">
+                  <svg class="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span class="text-sm text-gray-700">{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* CTA */}
+            <a
+              href={tier.cta.url}
+              class={`mt-8 block w-full py-3 px-6 rounded-lg font-semibold text-center transition-all duration-200 ${
+                tier.cta.variant === 'primary'
+                  ? 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow-lg hover:scale-105 active:scale-95'
+                  : 'border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-50 active:scale-95'
+              }`}
+            >
+              {tier.cta.text}
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Footer Note */}
+    <div class="mt-16 text-center">
+      <p class="text-gray-600">
+        All plans include a 14-day money-back guarantee. No credit card required for Open Source.
+      </p>
+    </div>
+  </div>
+</section>

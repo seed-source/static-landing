@@ -1,0 +1,88 @@
+---
+// Features Component - Seed & Source Value Props
+// Displays key features in a responsive grid layout
+// 6-item grid highlighting the Seed & Source business model
+
+interface Feature {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  features?: Feature[];
+}
+
+const {
+  title = "Why Choose Seed & Source?",
+  subtitle = "Built for scale-ups and agencies that don't compromise on code quality",
+  features = [
+    {
+      icon: "🏗️",
+      title: "Architecture-First",
+      description: "Hexagonal and Clean Architecture patterns built in from day one. Design for long-term maintainability over quick hacks."
+    },
+    {
+      icon: "🚀",
+      title: "Production-Ready",
+      description: "Runbooks, CI/CD pipelines, Docker containerization, and deployment automation included. Deploy with confidence."
+    },
+    {
+      icon: "🔧",
+      title: "Flexible Tech Stack",
+      description: "Rails for APIs, Python for AI/data, React for UX, dbt for analytics, Kotlin for mobile. Best tool for each job."
+    },
+    {
+      icon: "✨",
+      title: "Enterprise Standards",
+      description: "Strict linting, comprehensive testing, type safety, and code quality standards built into every template."
+    },
+    {
+      icon: "⚡",
+      title: "Developer Experience",
+      description: "CLI-driven setup, local development environment, interactive onboarding, and clear documentation for fast ramp-up."
+    },
+    {
+      icon: "📊",
+      title: "Operational Clarity",
+      description: "Infrastructure as Code with Terraform, deployment guides, monitoring readiness, and team handoff documentation."
+    }
+  ]
+} = Astro.props;
+---
+
+<section id="features" class="py-20 sm:py-32 bg-white">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl lg:text-center mb-16">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        {title}
+      </h2>
+      <p class="mt-6 text-lg leading-8 text-gray-600">
+        {subtitle}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {features.map((feature) => (
+        <div
+          class="relative group rounded-xl bg-white border border-gray-200 p-8 shadow-sm hover:shadow-lg hover:border-emerald-300 transition-all duration-300 ease-out"
+        >
+          <div class="relative z-10">
+            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-50 to-emerald-100 group-hover:from-emerald-100 group-hover:to-emerald-200 transition-colors">
+              <span class="text-2xl">{feature.icon}</span>
+            </div>
+            <h3 class="mt-4 text-lg font-semibold leading-7 text-gray-900">
+              {feature.title}
+            </h3>
+            <p class="mt-2 text-base leading-7 text-gray-600">
+              {feature.description}
+            </p>
+          </div>
+          <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-emerald-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

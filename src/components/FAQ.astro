@@ -1,0 +1,84 @@
+---
+// FAQ Component
+// Displays frequently asked questions in an accordion layout
+// Customize faqItems to add/remove questions
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  faqItems?: FAQItem[];
+}
+
+const {
+  faqItems = [
+    {
+      question: "What is Seed & Source?",
+      answer: "Seed & Source is a collection of production-ready templates and tools that accelerate development workflows. It includes templates for web applications, APIs, and more."
+    },
+    {
+      question: "Can I use Seed & Source in production?",
+      answer: "Absolutely! All templates in Seed & Source are designed with production readiness in mind. They follow best practices for security, performance, and scalability."
+    },
+    {
+      question: "Is there a free tier?",
+      answer: "Yes! The Starter tier is completely free and includes access to basic templates, community support, and documentation."
+    },
+    {
+      question: "Do you provide support?",
+      answer: "We offer community support for free users, priority email support for Professional tier, and 24/7 dedicated support for Enterprise customers."
+    },
+    {
+      question: "Can I modify the templates?",
+      answer: "Yes, all templates are fully customizable. Use Tailwind CSS for styling and modify components as needed for your specific use case."
+    },
+    {
+      question: "What languages are supported?",
+      answer: "Our templates support multiple languages including Python, TypeScript, Kotlin, and Swift. See our documentation for the complete list."
+    }
+  ]
+} = Astro.props;
+---
+
+<section id="faq" class="py-20 sm:py-32 bg-white">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        Frequently Asked Questions
+      </h2>
+      <p class="mt-6 text-lg leading-8 text-gray-600">
+        Have a question? Check our FAQ or reach out to our support team.
+      </p>
+    </div>
+
+    <div class="space-y-6">
+      {faqItems.map((item, index) => (
+        <details class="group border-l-4 border-primary-500 bg-gray-50 p-6 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors">
+          <summary class="flex items-center justify-between font-semibold text-gray-900 select-none">
+            <span class="text-lg">{item.question}</span>
+            <span class="transition-transform group-open:rotate-180">
+              <svg class="h-5 w-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </span>
+          </summary>
+          <p class="mt-4 text-gray-600 leading-relaxed">
+            {item.answer}
+          </p>
+        </details>
+      ))}
+    </div>
+
+    <div class="mt-16 rounded-lg bg-primary-50 p-8 text-center">
+      <h3 class="text-xl font-semibold text-gray-900">Still have questions?</h3>
+      <p class="mt-2 text-gray-600">
+        Can't find the answer you're looking for? Contact our support team.
+      </p>
+      <a href="/contact" class="mt-4 inline-block btn btn-primary">
+        Get in Touch
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,7 @@
+/* Minimal styles for static-landing scaffold */
+:root{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;} 
+body{margin:0;padding:2rem;background:#f6f7fb;color:#0b1220}
+main{max-width:720px;margin:0 auto}
+header h1{margin:0 0 .25rem}
+section{margin-top:1rem}
+footer{margin-top:2rem;opacity:.8;font-size:.9rem}

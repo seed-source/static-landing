@@ -1,0 +1,90 @@
+/* Tailwind CSS Imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global Styles */
+:root {
+  /* Seed & Source Color Tokens */
+  --color-primary: #3B82F6;
+  --color-primary-dark: #2563EB;
+  --color-secondary: #10B981;
+  --color-dark-bg: #0F172A;
+  --color-dark-bg-alt: #1E293B;
+  --color-text: #1F2937;
+  --color-text-light: #6B7280;
+  --color-border: #E5E7EB;
+}
+
+html {
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-gray-900;
+}
+
+/* Smooth transitions */
+* {
+  @apply transition-colors duration-200;
+}
+
+/* Headings */
+h1 {
+  @apply text-4xl font-bold tracking-tight;
+}
+
+h2 {
+  @apply text-3xl font-bold tracking-tight;
+}
+
+h3 {
+  @apply text-2xl font-bold;
+}
+
+h4 {
+  @apply text-xl font-bold;
+}
+
+/* Buttons */
+.btn {
+  @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-all duration-200;
+}
+
+.btn-primary {
+  @apply bg-primary-500 text-white hover:bg-primary-600;
+}
+
+.btn-secondary {
+  @apply bg-secondary-500 text-white hover:bg-secondary-600;
+}
+
+.btn-outline {
+  @apply border-2 border-primary-500 text-primary-500 hover:bg-primary-50;
+}
+
+/* Links */
+a {
+  @apply text-primary-500 hover:text-primary-600 underline;
+}
+
+/* Sections */
+.section {
+  @apply py-16 px-4 md:px-8 lg:px-16;
+}
+
+.section-light {
+  @apply bg-gray-50;
+}
+
+.section-dark {
+  @apply bg-dark-900 text-white;
+}
+
+/* Grid */
+.grid-cols-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}

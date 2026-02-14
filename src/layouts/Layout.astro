@@ -1,0 +1,249 @@
+---
+// Base layout component for all pages
+// Includes global header with responsive navigation, footer with links and newsletter signup
+// Features: sticky header with scroll shadow, mobile hamburger menu, accessibility labels
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Seed & Source - Production-ready SaaS templates for modern web applications" } = Astro.props;
+
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#3B82F6" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body class="antialiased bg-white text-gray-900">
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 w-full bg-white border-b border-gray-200 shadow-sm backdrop-blur-sm bg-opacity-95" id="header">
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        <!-- Logo/Brand -->
+        <a href="/" class="text-2xl font-bold text-primary-600 hover:text-primary-700 transition-colors" aria-label="Seed & Source Home">
+          Seed & Source
+        </a>
+
+        <!-- Desktop Navigation Menu -->
+        <ul class="hidden md:flex gap-8 items-center">
+          <li><a href="/" class="text-gray-700 hover:text-primary-600 transition-colors font-medium">Home</a></li>
+          <li><a href="#features" class="text-gray-700 hover:text-primary-600 transition-colors font-medium">Features</a></li>
+          <li><a href="#pricing" class="text-gray-700 hover:text-primary-600 transition-colors font-medium">Pricing</a></li>
+          <li><a href="https://docs.example.com" class="text-gray-700 hover:text-primary-600 transition-colors font-medium" target="_blank" rel="noopener noreferrer">Docs</a></li>
+          <li><a href="https://blog.example.com" class="text-gray-700 hover:text-primary-600 transition-colors font-medium" target="_blank" rel="noopener noreferrer">Blog</a></li>
+        </ul>
+
+        <!-- Right Section: Auth Buttons -->
+        <div class="hidden md:flex gap-4 items-center">
+          <a href="#login" class="text-gray-700 hover:text-primary-600 transition-colors font-medium" aria-label="Login">
+            Login
+          </a>
+          <a href="/signup" class="btn btn-primary px-6 py-2" aria-label="Sign Up for Seed and Source">
+            Sign Up
+          </a>
+        </div>
+
+        <!-- Mobile Hamburger Menu Button -->
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-100 transition-colors"
+          aria-label="Toggle mobile menu"
+          aria-expanded="false"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </nav>
+
+      <!-- Mobile Navigation Menu (Hidden by default) -->
+      <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-white">
+        <div class="px-4 py-4 space-y-4">
+          <a href="/" class="block text-gray-700 hover:text-primary-600 font-medium py-2">Home</a>
+          <a href="#features" class="block text-gray-700 hover:text-primary-600 font-medium py-2">Features</a>
+          <a href="#pricing" class="block text-gray-700 hover:text-primary-600 font-medium py-2">Pricing</a>
+          <a href="https://docs.example.com" class="block text-gray-700 hover:text-primary-600 font-medium py-2" target="_blank" rel="noopener noreferrer">Docs</a>
+          <a href="https://blog.example.com" class="block text-gray-700 hover:text-primary-600 font-medium py-2" target="_blank" rel="noopener noreferrer">Blog</a>
+          <div class="pt-4 space-y-3 border-t border-gray-200">
+            <a href="#login" class="block text-gray-700 hover:text-primary-600 font-medium py-2">Login</a>
+            <a href="/signup" class="btn btn-primary w-full">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="min-h-screen">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark-900 text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <!-- Footer Content Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          <!-- Column 1: Brand -->
+          <div>
+            <h3 class="text-xl font-bold mb-4">Seed & Source</h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+              Production-ready SaaS templates and tools for founders, agencies, and developers building the next generation of web applications.
+            </p>
+            <!-- Social Media Icons -->
+            <div class="flex gap-4">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors" aria-label="Follow us on Twitter">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M8.29 20a11.007 11.007 0 0011.25-11.182c.488-.905.964-1.505 1.457-2.712-.467.196-1.37.577-2.684.577.936-.559 1.676-1.859 2.142-3.110-.878.521-1.850.937-2.878.937-1.660-1.736-4.786-1.788-6.41.256-1.311 1.666-1.889 4.561-.25 6.748-2.997-.149-5.209-2.176-6.132-4.553-.6 1.944 1.547 3.276 1.547 3.276-.456-.159-1.338-.492-2.049-.492v.052c0 2.694 1.782 5.139 4.233 5.307-.424.221-.696.408-1.522.408-1.333 0-2.41-.916-2.607-1.945-.207 1.022.331 2.285 2.428 3.071-.788.26-1.751.26-2.37.26 0 2.571 3.670 3.779 6.838 3.779 6.176 0 9.555-5.592 9.555-10.441 0-.165-.003-.33-.009-.492.658-.474 1.338-1.063 1.659-1.337z" />
+                </svg>
+              </a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors" aria-label="View us on GitHub">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.603-3.369-1.343-3.369-1.343-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.544 2.914 1.186.092-.923.35-1.544.636-1.9-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.268.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0110 4.844c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.379.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C17.137 18.192 20 14.434 20 10.017 20 4.484 15.522 0 10 0z" clip-rule="evenodd" />
+                </svg>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors" aria-label="Connect with us on LinkedIn">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M16.338 16.338H13.67V12.16c0-.995-.017-2.292-1.194-2.292-1.195 0-1.38.932-1.38 1.893v4.038h-2.568V9.307h2.577v.831h.035c.36-.674 1.228-1.387 2.528-1.387 2.703 0 3.203 1.778 3.203 4.092v4.471zM5.337 7.433c-.821 0-1.585-.321-1.585-1.452 0-1.133.764-1.459 1.585-1.459s1.595.326 1.595 1.459c0 1.131-.774 1.452-1.595 1.452zm1.368 8.905H3.97V9.307h2.735v7.031zM17.715 0H2.283A2.325 2.325 0 000 2.283v15.434A2.325 2.325 0 002.283 20h15.432A2.326 2.326 0 0020 17.717V2.283A2.325 2.325 0 0017.715 0z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Column 2: Product -->
+          <div>
+            <h4 class="text-lg font-bold mb-6">Product</h4>
+            <ul class="space-y-4 text-sm text-gray-400">
+              <li><a href="#features" class="hover:text-white transition-colors">Features</a></li>
+              <li><a href="#pricing" class="hover:text-white transition-colors">Pricing</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Security</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Enterprise</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Changelog</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Resources & Community -->
+          <div>
+            <h4 class="text-lg font-bold mb-6">Resources</h4>
+            <ul class="space-y-4 text-sm text-gray-400">
+              <li><a href="https://docs.example.com" class="hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">Documentation</a></li>
+              <li><a href="https://blog.example.com" class="hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">Blog</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Community</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Support</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Status</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 4: Legal & Newsletter -->
+          <div>
+            <h4 class="text-lg font-bold mb-6">Company</h4>
+            <ul class="space-y-4 text-sm text-gray-400 mb-8">
+              <li><a href="#" class="hover:text-white transition-colors">About</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Privacy</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Terms</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Cookies</a></li>
+            </ul>
+
+            <!-- Newsletter Signup -->
+            <h5 class="text-sm font-bold text-white mb-3">Stay updated</h5>
+            <form class="flex flex-col gap-2" id="newsletter-form">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                class="px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 transition-colors text-sm"
+                aria-label="Email for newsletter"
+                required
+              />
+              <button
+                type="submit"
+                class="btn btn-primary text-sm"
+                aria-label="Subscribe to newsletter"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="border-t border-gray-800 pt-8">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <p class="text-sm text-gray-400">
+              &copy; 2026 Seed & Source. All rights reserved.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 text-sm text-gray-400">
+              <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+              <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+              <a href="#" class="hover:text-white transition-colors">Cookie Settings</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+      const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+      mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close menu when clicking on a link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  }
+
+  // Sticky header scroll shadow
+  const header = document.getElementById('header');
+  if (header) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        header.classList.add('shadow-md');
+      } else {
+        header.classList.remove('shadow-md');
+      }
+    });
+  }
+
+  // Newsletter form submission
+  const newsletterForm = document.getElementById('newsletter-form');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = newsletterForm.querySelector('input[type="email"]').value;
+      // In a real app, you'd send this to a backend service
+      console.log('Newsletter signup:', email);
+      newsletterForm.reset();
+      // Optional: Show success message
+      alert('Thanks for subscribing!');
+    });
+  }
+</script>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Smooth transitions for all interactive elements */
+  a, button {
+    transition: all 200ms ease-in-out;
+  }
+</style>
