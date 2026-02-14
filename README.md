@@ -56,6 +56,7 @@ static-landing/
 ├── tailwind.config.mjs           # Tailwind CSS configuration
 ├── tsconfig.json                 # TypeScript configuration
 └── package.json                  # Dependencies
+```
 
 ## Design Tokens
 
