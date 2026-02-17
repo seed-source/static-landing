@@ -1,21 +1,23 @@
 ---
 // Main landing page
-// Imports and assembles all page sections: Hero, Features, Social Proof, Pricing, FAQ, and CTA
+// Imports and assembles all page sections based on blueprint.json
 // Wrapped in Layout component for consistent header, footer, and styling
 
 import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
 import Ecosystem from '../components/Ecosystem.astro';
 import CodeSoil from '../components/CodeSoil.astro';
 import Features from '../components/Features.astro';
 import CTA from '../components/CTA.astro';
 
-const title = "Seed & Source | Plant the Future, Source the Scale";
-const description = "The multidisciplinary foundation for SaaS, Mobile, and Creative projects. Bootstrap your next 'seed' with production-grade architecture.";
-const canonicalUrl = "https://seedsource.dev";
+// Load Blueprint
+import blueprint from '../../blueprint.json';
 
-// Select your theme: 'emerald' | 'midnight' | 'crimson' | 'amber'
-const activeTheme = 'emerald';
+const { brand, sections, theme: activeTheme } = blueprint;
+
+const title = `${brand.name} | ${brand.tagline}`;
+const description = brand.tagline;
 ---
 
 <Layout 
@@ -23,11 +25,18 @@ const activeTheme = 'emerald';
   description={description}
   theme={activeTheme}
 >
+  <!-- Navigation -->
+  <Nav 
+    brandName={brand.name}
+    links={blueprint.nav.links}
+    cta={blueprint.nav.cta}
+  />
+
   <!-- Hero Section -->
-  <Hero />
+  <Hero {...sections.hero} />
 
   <!-- Ecosystem / Golden Path -->
-  <Ecosystem />
+  <Ecosystem {...sections.ecosystem} />
 
   <!-- Code as Soil -->
   <CodeSoil />
