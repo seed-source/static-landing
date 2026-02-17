@@ -9,7 +9,8 @@ This template provides:
 - **Tailwind CSS**: Utility-first CSS with Seed & Source design tokens
 - **TypeScript**: Full type safety for components
 - **Responsive Design**: Mobile-first approach with all components
-- **Pre-built Sections**: Hero, Features, Pricing, FAQ, Social Proof, CTA
+- **Pre-built Sections**: Hero, Features, Pricing, FAQ, Social Proof, CTA, Newsletter, Testimonials, Process, Integrations, Team
+- **Testing Suite**: Integrated Vitest for unit testing and Playwright for E2E.
 
 ## Quick Start
 
@@ -28,7 +29,12 @@ This template provides:
    npm run build
    ```
 
-4. Preview production build:
+4. Run tests:
+   ```bash
+   npm test
+   ```
+
+5. Preview production build:
    ```bash
    npm run preview
    ```
@@ -98,6 +104,13 @@ Edit `src/components/Features.astro` to:
 Edit `src/components/Pricing.astro` to:
 - Modify pricing tiers
 - Update feature lists
+
+### Newsletter & Social
+- **Newsletter**: Minimalist signup in `src/components/Newsletter.astro`
+- **Testimonials**: Glassmorphic social proof in `src/components/Testimonials.astro`
+- **Integrations**: Logo cloud in `src/components/Integrations.astro`
+- **Team**: Bio grid in `src/components/Team.astro`
+- **Process**: Step-by-step workflow in `src/components/Process.astro`
 - Change call-to-action text
 
 ### FAQ
