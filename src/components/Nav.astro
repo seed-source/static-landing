@@ -1,0 +1,59 @@
+---
+// Nav.astro
+// Fixed navigation component with glassmorphism support
+
+interface Props {
+  brandName?: string;
+  links?: { text: string; url: string; }[];
+  cta?: { text: string; url: string; };
+}
+
+const { 
+  brandName = "Seed & Source",
+  links = [
+    { text: "The Nursery", url: "#hero" },
+    { text: "Ecosystem", url: "#ecosystem" },
+    { text: "Pricing", url: "#pricing" },
+    { text: "Docs", url: "https://docs.seedsource.dev" }
+  ],
+  cta = { text: "Start Growing", url: "#signup" }
+} = Astro.props;
+---
+
+<nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-white/50 transition-all duration-300 h-20 flex items-center shadow-sm">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+        <!-- Logo Section -->
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-foundry-primary rounded-lg flex items-center justify-center text-foundry-secondary relative overflow-hidden group cursor-pointer shadow-lg">
+                <!-- Geometric Seed Logo -->
+                <i class="fa-solid fa-seedling text-xl relative z-10 group-hover:scale-110 transition-transform duration-300"></i>
+                <div class="absolute bottom-0 w-full h-1/2 bg-gradient-to-t from-emerald-900/50 to-transparent"></div>
+                <svg class="absolute bottom-0 w-full h-full opacity-30" viewBox="0 0 100 100">
+                    <path d="M50 50 L50 100 M50 70 L20 100 M50 70 L80 100" stroke="currentColor" stroke-width="2" fill="none" />
+                </svg>
+            </div>
+            <span class="font-serif font-bold text-xl tracking-wide text-foundry-primary">{brandName}</span>
+        </div>
+
+        <!-- Desktop Links -->
+        <div class="hidden md:flex items-center space-x-8">
+            {links.map(link => (
+                <a href={link.url} class="text-sm font-medium text-slate-600 hover:text-foundry-secondary transition-colors">
+                    {link.text}
+                </a>
+            ))}
+        </div>
+
+        <!-- CTA and Search -->
+        <div class="flex items-center gap-4">
+            <div class="relative hidden sm:block">
+                <i class="fa-solid fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 text-xs"></i>
+                <input type="text" placeholder="Find seed..." class="pl-9 pr-4 py-2 bg-white/50 border border-slate-200 rounded-full text-sm focus:outline-none focus:border-foundry-secondary focus:ring-1 focus:ring-foundry-secondary w-32 transition-all focus:w-48 text-slate-600">
+            </div>
+            <button class="bg-foundry-primary hover:bg-emerald-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg hover:shadow-emerald-500/30 flex items-center gap-2 group">
+                <span>{cta.text}</span>
+                <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+            </button>
+        </div>
+    </div>
+</nav>

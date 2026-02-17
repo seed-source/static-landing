@@ -1,0 +1,20 @@
+---
+// GlassPanel.astro
+// Reusable glassmorphic panel wrapper
+// Features: backdrop blur, semi-transparent background, subtle borders
+
+interface Props {
+  variant?: 'light' | 'dark';
+  class?: string;
+}
+
+const { variant = 'light', class: className = '' } = Astro.props;
+
+const baseStyles = variant === 'light' 
+  ? 'bg-white/70 backdrop-blur-md border border-white/50 shadow-glass' 
+  : 'bg-foundry-primary/85 backdrop-blur-lg border border-foundry-secondary/20';
+---
+
+<div class:list={[baseStyles, className]}>
+  <slot />
+</div>

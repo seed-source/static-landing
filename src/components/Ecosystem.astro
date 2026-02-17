@@ -1,83 +1,60 @@
 ---
 // Ecosystem Component (Golden Path Architecture)
 // Features animated "vine" lines and a responsive grid of growth stages.
+import GlassPanel from './GlassPanel.astro';
+import Diagram from './Diagram.astro';
+
+interface Stage {
+  title: string;
+  icon: string;
+  description: string;
+  command: string;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  stages?: Stage[];
+}
+
+const {
+  title = "Golden Path Architecture",
+  subtitle = "Visualizing the organic growth of your project's infrastructure.",
+  stages = []
+} = Astro.props;
 ---
 
 <section id="ecosystem" class="py-24 bg-foundry-surface/50 relative overflow-hidden">
   <div class="container mx-auto px-6">
     <div class="text-center mb-20 animate-fade-in">
-      <h2 class="font-serif text-5xl md:text-6xl font-bold text-foundry-primary mb-4">Golden Path Architecture</h2>
-      <p class="text-foundry-text/60 max-w-2xl mx-auto text-lg italic">"Visualizing the organic growth of your project's infrastructure."</p>
+      <h2 class="font-serif text-5xl md:text-6xl font-bold text-foundry-primary mb-4">{title}</h2>
+      <p class="text-foundry-text/60 max-w-2xl mx-auto text-lg italic">{subtitle}</p>
     </div>
 
     <div class="relative max-w-6xl mx-auto">
       <!-- Responsive Vine Lines (Animated) -->
-      <svg class="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-40" preserveAspectRatio="none" viewBox="0 0 1000 400">
-        <path 
-          class="vine-line" 
-          d="M125,100 Q250,100 250,200 T375,300 Q500,300 500,100 T625,100 Q750,100 750,200 T875,300" 
-          stroke="var(--color-foundry-secondary)" 
-          stroke-width="2" 
-          fill="none" 
-        />
-      </svg>
+      <Diagram />
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
-        <!-- Card 1 -->
-        <div class="bg-white rounded-2xl p-8 border border-foundry-accent/10 shadow-xl hover:shadow-2xl hover:border-foundry-secondary transition-all group glass-panel animate-fade-in-up" style="animation-delay: 0.1s;">
-          <div class="w-16 h-16 rounded-2xl bg-foundry-accent/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm">
-            <span class="text-3xl">🌱</span>
-          </div>
-          <h3 class="font-serif font-bold text-2xl text-foundry-primary mb-3">Seed Stage</h3>
-          <p class="text-foundry-text/70 text-base leading-relaxed mb-6">
-            Initial germination of ideas. Rapid prototyping environment with pre-built component soil.
-          </p>
-          <div class="flex items-center gap-2 text-xs font-mono text-foundry-secondary bg-foundry-secondary/10 w-fit px-3 py-1 rounded-full uppercase">
-            <code>git init</code>
-          </div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="bg-white rounded-2xl p-8 border border-foundry-accent/10 shadow-xl hover:shadow-2xl hover:border-foundry-secondary transition-all group glass-panel mt-0 md:mt-24 animate-fade-in-up" style="animation-delay: 0.3s;">
-          <div class="w-16 h-16 rounded-2xl bg-foundry-secondary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm">
-            <span class="text-3xl">🌿</span>
-          </div>
-          <h3 class="font-serif font-bold text-2xl text-foundry-primary mb-3">Root System</h3>
-          <p class="text-foundry-text/70 text-base leading-relaxed mb-6">
-            Establishing core architecture. Hexagonal patterns ensuring your logic remains pure and adaptable.
-          </p>
-          <div class="flex items-center gap-2 text-xs font-mono text-foundry-secondary bg-foundry-secondary/10 w-fit px-3 py-1 rounded-full uppercase">
-            <code>make setup</code>
-          </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="bg-white rounded-2xl p-8 border border-foundry-accent/10 shadow-xl hover:shadow-2xl hover:border-foundry-secondary transition-all group glass-panel animate-fade-in-up" style="animation-delay: 0.5s;">
-          <div class="w-16 h-16 rounded-2xl bg-foundry-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm">
-            <span class="text-3xl">🔋</span>
-          </div>
-          <h3 class="font-serif font-bold text-2xl text-foundry-primary mb-3">Stem Growth</h3>
-          <p class="text-foundry-text/70 text-base leading-relaxed mb-6">
-            Vertical scaling. Automated deployment pipelines that branch your product across multiple regions.
-          </p>
-          <div class="flex items-center gap-2 text-xs font-mono text-foundry-secondary bg-foundry-secondary/10 w-fit px-3 py-1 rounded-full uppercase">
-            <code>sscli deploy</code>
-          </div>
-        </div>
-
-        <!-- Card 4 -->
-        <div class="bg-white rounded-2xl p-8 border border-foundry-accent/10 shadow-xl hover:shadow-2xl hover:border-foundry-secondary transition-all group glass-panel mt-0 md:mt-24 animate-fade-in-up" style="animation-delay: 0.7s;">
-          <div class="w-16 h-16 rounded-2xl bg-foundry-secondary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm">
-            <span class="text-3xl">🦋</span>
-          </div>
-          <h3 class="font-serif font-bold text-2xl text-foundry-primary mb-3">Bloom Era</h3>
-          <p class="text-foundry-text/70 text-base leading-relaxed mb-6">
-            The polished user experience. A thriving, multidisciplinary interface that captures value and grows.
-          </p>
-          <div class="flex items-center gap-2 text-xs font-mono text-foundry-secondary bg-foundry-secondary/10 w-fit px-3 py-1 rounded-full uppercase">
-            <code>v1.0.0</code>
-          </div>
-        </div>
+        {stages.map((stage, index) => (
+          <GlassPanel 
+            class:list={[
+              "rounded-2xl p-8 border border-foundry-accent/10 shadow-xl hover:shadow-2xl hover:border-foundry-secondary transition-all group animate-fade-in-up",
+              index % 2 !== 0 ? "mt-0 md:mt-24" : ""
+            ]}
+          >
+            <div class="w-16 h-16 rounded-2xl bg-foundry-accent/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm">
+              <span class="text-3xl">{stage.icon}</span>
+            </div>
+            <h3 class="font-serif font-bold text-2xl text-foundry-primary mb-3">{stage.title}</h3>
+            <p class="text-foundry-text/70 text-base leading-relaxed mb-6">
+              {stage.description}
+            </p>
+            <div class="flex items-center gap-2 text-xs font-mono text-foundry-secondary bg-foundry-secondary/10 w-fit px-3 py-1 rounded-full uppercase">
+              <code>{stage.command}</code>
+            </div>
+          </GlassPanel>
+        ))}
       </div>
     </div>
   </div>
