@@ -5,76 +5,46 @@
 
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import Ecosystem from '../components/Ecosystem.astro';
+import CodeSoil from '../components/CodeSoil.astro';
 import Features from '../components/Features.astro';
-import Pricing from '../components/Pricing.astro';
-import SocialProof from '../components/SocialProof.astro';
-import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
 
-const title = "Seed & Source - Production-Ready SaaS Kit for Founders & Agencies";
-const description = "Accelerate your development with battle-tested templates for Python SaaS, Rails APIs, React clients, mobile apps, and data pipelines. Deploy to production in hours, not weeks.";
-const canonicalUrl = "https://seedandsource.com";
+const title = "Seed & Source | Plant the Future, Source the Scale";
+const description = "The multidisciplinary foundation for SaaS, Mobile, and Creative projects. Bootstrap your next 'seed' with production-grade architecture.";
+const canonicalUrl = "https://seedsource.dev";
+
+// Select your theme: 'emerald' | 'midnight' | 'crimson' | 'amber'
+const activeTheme = 'emerald';
 ---
 
 <Layout 
   title={title}
   description={description}
+  theme={activeTheme}
 >
-  <!-- Add SEO head metadata -->
-  <meta slot="head">
-    <meta name="canonical" content={canonicalUrl} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalUrl} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={canonicalUrl + "/og-image.png"} />
-  </meta>
-
   <!-- Hero Section -->
-  <Hero
-    title="The Scale-Up Stack"
-    subtitle="Production-ready SaaS starter kits for founders and agencies"
-    description="Seed & Source accelerates your path to production with battle-tested templates for Python SaaS, Rails APIs, React clients, mobile apps, and data pipelines. Deploy in days, not weeks."
-    primaryCTA={{
-      text: "Get Started",
-      url: "/signup"
-    }}
-    secondaryCTA={{
-      text: "View Documentation",
-      url: "https://docs.example.com"
-    }}
-    showHeroImage={true}
-  />
+  <Hero />
 
-  <!-- Features Section -->
+  <!-- Ecosystem / Golden Path -->
+  <Ecosystem />
+
+  <!-- Code as Soil -->
+  <CodeSoil />
+
+  <!-- Features Section (Generic but themed) -->
   <Features
     id="features"
-    title="Everything You Need to Scale"
-  />
-
-  <!-- Social Proof Section -->
-  <SocialProof />
-
-  <!-- Pricing Section -->
-  <Pricing
-    id="pricing"
-  />
-
-  <!-- Frequently Asked Questions -->
-  <FAQ
-    id="faq"
+    title="Multidisciplinary Mastery"
   />
 
   <!-- Final CTA Section -->
   <CTA
-    heading="Ready to accelerate your development?"
-    description="Start building with Seed & Source today. Free to get started, scale as you grow. Deploy your first service in under an hour."
-    primaryButtonText="Get Started Free"
+    heading="Plant your seed today."
+    description="Get early access to the sscli and the Flourishing Foundry ecosystem."
+    primaryButtonText="Get Alpha Access"
     primaryButtonUrl="/signup"
-    secondaryButtonText="Schedule a Demo"
-    secondaryButtonUrl="https://calendly.com/example"
+    secondaryButtonText="Read the Playbook"
+    secondaryButtonUrl="https://docs.seedsource.dev"
   />
 </Layout>

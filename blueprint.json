@@ -1,0 +1,15 @@
+{
+  "theme": "emerald",
+  "brand": {
+    "name": "Seed & Source",
+    "domain": "seedsource.dev",
+    "tagline": "The Organic Precision Stack for Modern SaaS"
+  },
+  "sections": {
+    "hero": {
+      "title": "Build your SaaS on Clean Soil",
+      "subtitle": "A container-first, multi-tenant architectural foundation that scales from seed to enterprise.",
+      "terminal_text": "git clone git@github.com:seed-source/foundry-meta.git"
+    }
+  }
+}

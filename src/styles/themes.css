@@ -1,0 +1,44 @@
+/* 
+ * Foundry Theme Definitions
+ * Each theme provides a unique color palette for the semantic tokens.
+ */
+
+:root {
+  /* Default: Emerging Emerald (Seed & Source Flagship) */
+  --color-foundry-primary: #064E3B;    /* Forest 900 */
+  --color-foundry-secondary: #10B981;  /* Emerald 500 */
+  --color-foundry-accent: #34D399;     /* Emerald 400 */
+  --color-foundry-surface: #ECFDF5;    /* Mint 50 */
+  --color-foundry-text: #111827;       /* Slate 900 */
+  --shadow-foundry-glow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+/* Midnight Azure (Professional / Enterprise) */
+[data-theme="midnight"] {
+  --color-foundry-primary: #1E3A8A;    /* Blue 900 */
+  --color-foundry-secondary: #3B82F6;  /* Blue 500 */
+  --color-foundry-accent: #60A5FA;     /* Blue 400 */
+  --color-foundry-surface: #F8FAFC;    /* Slate 50 */
+  --color-foundry-text: #0F172A;       /* Slate 900 */
+  --shadow-foundry-glow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Crimson Bloom (Creative / High-Growth) */
+[data-theme="crimson"] {
+  --color-foundry-primary: #7F1D1D;    /* Red 900 */
+  --color-foundry-secondary: #EF4444;  /* Red 500 */
+  --color-foundry-accent: #F87171;     /* Red 400 */
+  --color-foundry-surface: #FEF2F2;    /* Red 50 */
+  --color-foundry-text: #450A0A;       /* Red 950 */
+  --shadow-foundry-glow: 0 0 20px rgba(239, 68, 68, 0.3);
+}
+
+/* Vibrant Amber (Learning / Community) */
+[data-theme="amber"] {
+  --color-foundry-primary: #78350F;    /* Amber 900 */
+  --color-foundry-secondary: #F59E0B;  /* Amber 500 */
+  --color-foundry-accent: #FBBF24;     /* Amber 400 */
+  --color-foundry-surface: #FFFBEB;    /* Amber 50 */
+  --color-foundry-text: #451A03;       /* Amber 950 */
+  --shadow-foundry-glow: 0 0 20px rgba(245, 158, 11, 0.3);
+}

@@ -33,21 +33,29 @@ This template provides:
    npm run preview
    ```
 
+## 🏗️ World-Class Standards
+
+This template follows "The Golden Path" architectural guidelines:
+1.  **Multi-Theme Architecture**: Powered by semantic CSS variables (`themes.css`) and Tailwind extensions.
+2.  **Organic Precision UI**: High-fidelity SVG animations (vine-line, terminal) with no bloating dependencies.
+3.  **Privacy-First**: Zero third-party trackers (purged `uxpilot` and other analytics).
+4.  **A11y/SEO Optimized**: Built for 100/100 Lighthouse scores.
+
+## 📋 Quality Assurance
+Refer to [docs/QA_CHECKLIST.md](docs/QA_CHECKLIST.md) for pre-deployment verification steps.
+
+## 🔥 High-Value Enhancements
+Refer to [docs/HIGH_VALUE_LOW_EFFORT.md](docs/HIGH_VALUE_LOW_EFFORT.md) for a curated list of "Aura" features to add (View Transitions, Dark Mode, Astro Compress).
+
 ## Project Structure
 
 ```
 static-landing/
 ├── src/
-│   ├── pages/
-│   │   └── index.astro          # Main landing page
-│   ├── layouts/
-│   │   └── Layout.astro         # Base layout with header/footer
-│   ├── components/
-│   │   ├── Hero.astro           # Hero section
-│   │   ├── Features.astro       # Features grid
-│   │   ├── Pricing.astro        # Pricing tiers
-│   │   ├── FAQ.astro            # FAQ accordion
-│   │   ├── SocialProof.astro    # Testimonials & metrics
+│   ├── components/          # Semantic "Flourishing Foundry" Components
+│   ├── layouts/             # Thematic Layouts with multi-theme support
+│   ├── styles/              # Effects (Organic Precision) & Themes (CSS Vars)
+│   └── pages/               # Main entry points (blueprint-driven)
 │   │   └── CTA.astro            # Call-to-action section
 │   └── styles/
 │       └── global.css            # Global styles & tailwind directives

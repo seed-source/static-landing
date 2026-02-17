@@ -6,48 +6,55 @@
 interface Props {
   title: string;
   description?: string;
+  theme?: 'emerald' | 'midnight' | 'crimson' | 'amber';
 }
 
-const { title, description = "Seed & Source - Production-ready SaaS templates for modern web applications" } = Astro.props;
+const { 
+  title, 
+  description = "Seed & Source - Production-ready SaaS templates for modern web applications",
+  theme = 'emerald'
+} = Astro.props;
 
 import '../styles/global.css';
+import '../styles/effects.css';
+import '../styles/themes.css';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme={theme !== 'emerald' ? theme : undefined}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#3B82F6" />
+    <meta name="theme-color" content="#10B981" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <title>{title}</title>
   </head>
-  <body class="antialiased bg-white text-gray-900">
+  <body class="antialiased bg-foundry-surface text-foundry-text font-sans">
     <!-- Header Navigation -->
-    <header class="sticky top-0 z-50 w-full bg-white border-b border-gray-200 shadow-sm backdrop-blur-sm bg-opacity-95" id="header">
+    <header class="sticky top-0 z-50 w-full glass-panel border-b border-white border-opacity-30 shadow-sm" id="header">
       <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         <!-- Logo/Brand -->
-        <a href="/" class="text-2xl font-bold text-primary-600 hover:text-primary-700 transition-colors" aria-label="Seed & Source Home">
+        <a href="/" class="text-2xl font-serif font-bold text-foundry-primary hover:text-foundry-secondary transition-colors" aria-label="Seed & Source Home">
           Seed & Source
         </a>
 
         <!-- Desktop Navigation Menu -->
         <ul class="hidden md:flex gap-8 items-center">
-          <li><a href="/" class="text-gray-700 hover:text-primary-600 transition-colors font-medium">Home</a></li>
-          <li><a href="#features" class="text-gray-700 hover:text-primary-600 transition-colors font-medium">Features</a></li>
-          <li><a href="#pricing" class="text-gray-700 hover:text-primary-600 transition-colors font-medium">Pricing</a></li>
-          <li><a href="https://docs.example.com" class="text-gray-700 hover:text-primary-600 transition-colors font-medium" target="_blank" rel="noopener noreferrer">Docs</a></li>
-          <li><a href="https://blog.example.com" class="text-gray-700 hover:text-primary-600 transition-colors font-medium" target="_blank" rel="noopener noreferrer">Blog</a></li>
+          <li><a href="/" class="text-foundry-text hover:text-foundry-secondary transition-colors font-medium">Home</a></li>
+          <li><a href="#features" class="text-foundry-text hover:text-foundry-secondary transition-colors font-medium">Features</a></li>
+          <li><a href="#pricing" class="text-foundry-text hover:text-foundry-secondary transition-colors font-medium">Pricing</a></li>
+          <li><a href="https://docs.seedsource.dev" class="text-foundry-text hover:text-foundry-secondary transition-colors font-medium" target="_blank" rel="noopener noreferrer">Docs</a></li>
         </ul>
 
         <!-- Right Section: Auth Buttons -->
         <div class="hidden md:flex gap-4 items-center">
-          <a href="#login" class="text-gray-700 hover:text-primary-600 transition-colors font-medium" aria-label="Login">
+          <a href="#login" class="text-foundry-text hover:text-foundry-secondary transition-colors font-medium" aria-label="Login">
             Login
           </a>
-          <a href="/signup" class="btn btn-primary px-6 py-2" aria-label="Sign Up for Seed and Source">
-            Sign Up
+          <a href="/signup" class="bg-foundry-primary text-white px-6 py-2 rounded-full font-medium hover:brightness-110 transition-all shadow-glow" aria-label="Get Alpha Access">
+            Get Alpha Access
           </a>
         </div>
 
