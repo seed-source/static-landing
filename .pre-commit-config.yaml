@@ -1,0 +1,26 @@
+# Pre-commit configuration for Static Landing template
+# Enforces code style and quality for JavaScript/TypeScript Astro projects
+
+repos:
+  # Basic file validations
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-yaml
+        args: [--unsafe]
+      - id: check-json
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: detect-private-key
+
+default_stages: [pre-commit]
+fail_fast: false
+
+exclude: |
+  (?x)^(
+    node_modules|
+    dist|
+    build|
+    coverage|
+    \.git|
+  )
