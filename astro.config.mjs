@@ -14,7 +14,10 @@ export default defineConfig({
       Image: true,
       JavaScript: true,
       SVG: true,
-    })
+    }),
+    /* [SS-FEATURE-SDK-INTEGRATIONS-START] */
+    // Commerce SDKs (Stripe, Shopify) and third-party integrations injected here
+    /* [SS-FEATURE-SDK-INTEGRATIONS-END] */
   ],
   output: 'static',
   site: 'https://seedsource.dev',

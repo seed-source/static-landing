@@ -40,5 +40,9 @@ export default {
       }
     }
   },
-  plugins: []
+  plugins: [
+    /* [SS-FEATURE-TAILWIND-PLUGINS-START] */
+    // Premium component plugins and styling extensions injected here
+    /* [SS-FEATURE-TAILWIND-PLUGINS-END] */
+  ]
 };
